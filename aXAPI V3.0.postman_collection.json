@@ -1,0 +1,1201 @@
+{
+	"info": {
+		"_postman_id": "ba45a93b-a03b-4fa7-8cd0-caa48ddfdf4f",
+		"name": "aXAPI V3.0",
+		"description": "A10 Networks API Calls. \n\nVarious example calls of some of the APIs.  Be sure to set the HOST, username, & password variables in the Collection before making any calls.  You will need to run the Authorize request first in order to set the AuthKey for subsequent calls.\n\nJohn D. Allen\nSr. Solutions Engineer\nA10 Networks Inc.\nApril, 2019\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Network",
+			"item": [
+				{
+					"name": "Get Network Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}/axapi/v3/ip",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"ip"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Network Routing Table",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}/axapi/v3/ip/route",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"ip",
+								"route"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Network Interface Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}/axapi/v3/interface",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"interface"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable Interface 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ethernet\": {\n\t\t\"ifnum\": 1,\n\t\t\"action\": \"disable\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "https://{{HOST}}/axapi/v3/interface/ethernet/1",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"interface",
+								"ethernet",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get DNS Settings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}/axapi/v3/ip/dns",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"ip",
+								"dns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set DNS Suffix",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"suffix\": {\n\t\t\"domain-name\": \"home.gan\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "https://{{HOST}}/axapi/v3/ip/dns/suffix",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"ip",
+								"dns",
+								"suffix"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Network Interface Stats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{HOST}}/axapi/v3/interface/ethernet/1/stats",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"interface",
+								"ethernet",
+								"1",
+								"stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Overlay Tunnel Settings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}/axapi/v3/overlay-tunnel/",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"overlay-tunnel",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "System",
+			"item": [
+				{
+					"name": "Get System Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}/axapi/v3/system",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"system"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Version Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}/axapi/v3/version/oper",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"version",
+								"oper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get CPU Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}/axapi/v3/system-cpu/oper",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"system-cpu",
+								"oper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Memory Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}/axapi/v3/system-view/memory-view/oper",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"system-view",
+								"memory-view",
+								"oper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Running Process",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}/axapi/v3/system-view/show-process/oper",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"system-view",
+								"show-process",
+								"oper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Monitored Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}/axapi/v3/system-view/show-monitor/oper",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"system-view",
+								"show-monitor",
+								"oper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reboot Node",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"reboot\": {\n\t\t\"all\": \"0\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "https://{{HOST}}/axapi/v3/reboot",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"reboot"
+							]
+						},
+						"description": "Don't forget to do a Write::Memory before rebooting or you will loose all your changes!!"
+					},
+					"response": []
+				},
+				{
+					"name": "Factory Reset",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"erase\": {\n\t\t\"preserve-management\": 1,\n\t\t\"preserve-accounts\": 1,\n\t\t\"reload\": 1\n\t}\n}"
+						},
+						"url": {
+							"raw": "https://{{HOST}}/axapi/v3/erase",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"erase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get VRRP-A Settings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}/axapi/v3/vrrp-a/",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"vrrp-a",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authorize - RUN ME FIRST!",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "305ddb5a-7c49-401f-9bf2-b81d45740337",
+						"exec": [
+							"pm.test(\"Set Authkey\", function() {",
+							"    var jsonData = pm.response.json();",
+							"    console.log(jsonData.authresponse.signature);",
+							"    pm.globals.set(\"authkey\", \"A10 \" + jsonData.authresponse.signature)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content",
+						"value": "app",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"credentials\": {\n\t\t\"username\": \"{{username}}\",\n\t\t\"password\": \"{{password}}\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "https://{{HOST}}/axapi/v3/auth",
+					"protocol": "https",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"axapi",
+						"v3",
+						"auth"
+					]
+				},
+				"description": "Before you can run any of the aXAPI calls, you must first authorize with the node and get an Authroization Token, which must be used with every subsequent API call.  This Request will automatically set a Global Postman Variable (\"authkey\") and include it as a header on all the other API calls in the collection."
+			},
+			"response": []
+		},
+		{
+			"name": "Running-Config",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content",
+						"value": "app",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "text/plain",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{authkey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "show run"
+				},
+				"url": {
+					"raw": "https://{{HOST}}/axapi/v3/clideploy",
+					"protocol": "https",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"axapi",
+						"v3",
+						"clideploy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CLI Deploy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content",
+						"value": "app",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "text/plain",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{authkey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "show int br"
+				},
+				"url": {
+					"raw": "https://{{HOST}}/axapi/v3/clideploy",
+					"protocol": "https",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"axapi",
+						"v3",
+						"clideploy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Admin Logins",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content",
+						"value": "app",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{authkey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{HOST}}/axapi/v3/admin",
+					"protocol": "https",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"axapi",
+						"v3",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get SSL Cert List",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content",
+						"value": "app",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{authkey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{HOST}}/axapi/v3/admin",
+					"protocol": "https",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"axapi",
+						"v3",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SLB Server List",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content",
+						"value": "app",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{authkey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{HOST}}/axapi/v3/slb/server-list",
+					"protocol": "https",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"axapi",
+						"v3",
+						"slb",
+						"server-list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get SLB Server Stats",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content",
+						"value": "app",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{authkey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{HOST}}/axapi/v3/slb/server/test1/stats",
+					"protocol": "https",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"axapi",
+						"v3",
+						"slb",
+						"server",
+						"test1",
+						"stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Service Group List",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content",
+						"value": "app",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{authkey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{HOST}}/axapi/v3/slb/service-group-list",
+					"protocol": "https",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"axapi",
+						"v3",
+						"slb",
+						"service-group-list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Virtual Server List",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content",
+						"value": "app",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{authkey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{HOST}}/axapi/v3/slb/virtual-server-list",
+					"protocol": "https",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"axapi",
+						"v3",
+						"slb",
+						"virtual-server-list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Write Config to Memory",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content",
+						"value": "app",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{authkey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{HOST}}/axapi/v3/write/memory",
+					"protocol": "https",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"axapi",
+						"v3",
+						"write",
+						"memory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Terminate API Session",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content",
+						"value": "app",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{authkey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{HOST}}/axapi/v3/logoff",
+					"protocol": "https",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"axapi",
+						"v3",
+						"logoff"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "0d71c0ad-3506-4385-b872-0f909d36712b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "4d378e0d-888a-4add-9f30-a7d797c5ed7c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "854a97e9-b326-49c5-b450-18402c555086",
+			"key": "username",
+			"value": "admin",
+			"type": "string"
+		},
+		{
+			"id": "13ee0e43-e7cc-48ec-868d-b320d28d3f80",
+			"key": "password",
+			"value": "a10",
+			"type": "string"
+		},
+		{
+			"id": "dfd9ee79-8488-4b22-aea8-df9fec701e55",
+			"key": "HOST",
+			"value": "10.147.95.100",
+			"type": "string"
+		}
+	]
+}

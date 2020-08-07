@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "ba45a93b-a03b-4fa7-8cd0-caa48ddfdf4f",
+		"_postman_id": "6607bf8a-8abc-4993-bf9e-e742e425d579",
 		"name": "aXAPI V3.0",
-		"description": "A10 Networks API Calls. \n\nVarious example calls of some of the APIs.  Be sure to set the HOST, username, & password variables in the Collection before making any calls.  You will need to run the Authorize request first in order to set the AuthKey for subsequent calls.\n\nJohn D. Allen\nSr. Solutions Engineer\nA10 Networks Inc.\nApril, 2019\n",
+		"description": "A10 Networks API Calls. \n\nVarious example calls of some of the APIs.  Be sure to set the HOST, username, & password variables in the Collection before making any calls.  You will need to run the Authroize request first in order to set the AuthKey for subsequent calls.\n\nJohn D. Allen\nSr. Solutions Engineer\nA10 Networks Inc.\nApril, 2019\n",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -33,10 +33,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{HOST}}/axapi/v3/ip",
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/ip",
 							"protocol": "https",
 							"host": [
-								"{{HOST}}"
+								"{{HOST}}{{PORT}}"
 							],
 							"path": [
 								"axapi",
@@ -71,16 +71,54 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{HOST}}/axapi/v3/ip/route",
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/ip/route",
 							"protocol": "https",
 							"host": [
-								"{{HOST}}"
+								"{{HOST}}{{PORT}}"
 							],
 							"path": [
 								"axapi",
 								"v3",
 								"ip",
 								"route"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sflow Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/sflow",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"sflow"
 							]
 						}
 					},
@@ -110,15 +148,16 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{HOST}}/axapi/v3/interface",
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/interface/",
 							"protocol": "https",
 							"host": [
-								"{{HOST}}"
+								"{{HOST}}{{PORT}}"
 							],
 							"path": [
 								"axapi",
 								"v3",
-								"interface"
+								"interface",
+								""
 							]
 						}
 					},
@@ -152,10 +191,54 @@
 							"raw": "{\n\t\"ethernet\": {\n\t\t\"ifnum\": 1,\n\t\t\"action\": \"disable\"\n\t}\n}"
 						},
 						"url": {
-							"raw": "https://{{HOST}}/axapi/v3/interface/ethernet/1",
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/interface/ethernet/1",
 							"protocol": "https",
 							"host": [
-								"{{HOST}}"
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"interface",
+								"ethernet",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Enable Interface 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content",
+								"type": "text",
+								"value": "app",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{authkey}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ethernet\": {\n\t\t\"ifnum\": 1,\n\t\t\"action\": \"enable\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/interface/ethernet/1",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
 							],
 							"path": [
 								"axapi",
@@ -192,16 +275,110 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{HOST}}/axapi/v3/ip/dns",
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/ip/dns?detail=true",
 							"protocol": "https",
 							"host": [
-								"{{HOST}}"
+								"{{HOST}}{{PORT}}"
 							],
 							"path": [
 								"axapi",
 								"v3",
 								"ip",
 								"dns"
+							],
+							"query": [
+								{
+									"key": "detail",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set DNS Primary Server",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"primary\": {\n\t\t\"ip-v4-addr\": \"44.147.45.53\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/ip/dns/primary",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"ip",
+								"dns",
+								"primary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set DNS Secondary Server",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content",
+								"type": "text",
+								"value": "app",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{authkey}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"secondary\": {\n\t\t\"ip-v4-addr\": \"44.147.45.28\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/ip/dns/secondary",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"ip",
+								"dns",
+								"secondary"
 							]
 						}
 					},
@@ -235,10 +412,10 @@
 							"raw": "{\n\t\"suffix\": {\n\t\t\"domain-name\": \"home.gan\"\n\t}\n}"
 						},
 						"url": {
-							"raw": "https://{{HOST}}/axapi/v3/ip/dns/suffix",
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/ip/dns/suffix",
 							"protocol": "https",
 							"host": [
-								"{{HOST}}"
+								"{{HOST}}{{PORT}}"
 							],
 							"path": [
 								"axapi",
@@ -279,10 +456,10 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://{{HOST}}/axapi/v3/interface/ethernet/1/stats",
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/interface/ethernet/1/stats",
 							"protocol": "https",
 							"host": [
-								"{{HOST}}"
+								"{{HOST}}{{PORT}}"
 							],
 							"path": [
 								"axapi",
@@ -320,10 +497,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{HOST}}/axapi/v3/overlay-tunnel/",
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/overlay-tunnel/",
 							"protocol": "https",
 							"host": [
-								"{{HOST}}"
+								"{{HOST}}{{PORT}}"
 							],
 							"path": [
 								"axapi",
@@ -364,15 +541,221 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{HOST}}/axapi/v3/system",
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/system?detail=true",
 							"protocol": "https",
 							"host": [
-								"{{HOST}}"
+								"{{HOST}}{{PORT}}"
 							],
 							"path": [
 								"axapi",
 								"v3",
 								"system"
+							],
+							"query": [
+								{
+									"key": "detail",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get System Timezone",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"type": "text",
+								"value": "app",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{authkey}}"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/timezone/oper",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"timezone",
+								"oper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set System Timezone",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content",
+								"type": "text",
+								"value": "app",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{authkey}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"timezone\": {\n\t\t\"timezone-index-cfg\": {\n\t\t\t\"timezone-index\": \"America/Chicago\"\n\t\t}\n\t}\n}"
+						},
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/timezone",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"timezone"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Hostname",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/hostname",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"hostname"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Hostname",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content",
+								"type": "text",
+								"value": "app",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{authkey}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"hostname\": {\n\t\t\"value\": \"testLab-1\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/hostname",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"hostname"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get BootImage Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/bootimage/oper",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"bootimage",
+								"oper"
 							]
 						}
 					},
@@ -402,16 +785,58 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{HOST}}/axapi/v3/version/oper",
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/version/oper",
 							"protocol": "https",
 							"host": [
-								"{{HOST}}"
+								"{{HOST}}{{PORT}}"
 							],
 							"path": [
 								"axapi",
 								"v3",
 								"version",
 								"oper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Running-Config",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "text/plain",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "sh run"
+						},
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/clideploy",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"clideploy"
 							]
 						}
 					},
@@ -441,16 +866,169 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{HOST}}/axapi/v3/system-cpu/oper",
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/system-cpu/oper",
 							"protocol": "https",
 							"host": [
-								"{{HOST}}"
+								"{{HOST}}{{PORT}}"
 							],
 							"path": [
 								"axapi",
 								"v3",
 								"system-cpu",
 								"oper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Logging Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/logging",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"logging"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get NTP Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/ntp",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"ntp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Partition List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/partition",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"partition"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get SSL Cert List?",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"type": "text",
+								"value": "app",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{authkey}}"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/file/ssl-cert-list",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"file",
+								"ssl-cert-list"
 							]
 						}
 					},
@@ -480,10 +1058,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{HOST}}/axapi/v3/system-view/memory-view/oper",
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/system-view/memory-view/oper",
 							"protocol": "https",
 							"host": [
-								"{{HOST}}"
+								"{{HOST}}{{PORT}}"
 							],
 							"path": [
 								"axapi",
@@ -520,10 +1098,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{HOST}}/axapi/v3/system-view/show-process/oper",
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/system-view/show-process/oper",
 							"protocol": "https",
 							"host": [
-								"{{HOST}}"
+								"{{HOST}}{{PORT}}"
 							],
 							"path": [
 								"axapi",
@@ -531,6 +1109,90 @@
 								"system-view",
 								"show-process",
 								"oper"
+							]
+						},
+						"description": "Does not seem to work on:\n4.1.1 ADC"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Resource Limits",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/system/resource-usage",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"system",
+								"resource-usage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Resource Limit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"resource-usage\": {\n        \"max-aflex-file-size\": 128\n    }\n}"
+						},
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/system/resource-usage/",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"system",
+								"resource-usage",
+								""
 							]
 						}
 					},
@@ -560,10 +1222,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{HOST}}/axapi/v3/system-view/show-monitor/oper",
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/system-view/show-monitor/oper",
 							"protocol": "https",
 							"host": [
-								"{{HOST}}"
+								"{{HOST}}{{PORT}}"
 							],
 							"path": [
 								"axapi",
@@ -572,7 +1234,48 @@
 								"show-monitor",
 								"oper"
 							]
-						}
+						},
+						"description": "Does not seem to work on:\n4.1.1 ADC"
+					},
+					"response": []
+				},
+				{
+					"name": "Show System Sessions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/system/session",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"system",
+								"session"
+							]
+						},
+						"description": "Does not seem to work on:\n4.1.1 ADC"
 					},
 					"response": []
 				},
@@ -599,15 +1302,11 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"reboot\": {\n\t\t\"all\": \"0\"\n\t}\n}"
-						},
 						"url": {
-							"raw": "https://{{HOST}}/axapi/v3/reboot",
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/reboot",
 							"protocol": "https",
 							"host": [
-								"{{HOST}}"
+								"{{HOST}}{{PORT}}"
 							],
 							"path": [
 								"axapi",
@@ -620,7 +1319,7 @@
 					"response": []
 				},
 				{
-					"name": "Factory Reset",
+					"name": "Configuration Reset",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -647,10 +1346,10 @@
 							"raw": "{\n\t\"erase\": {\n\t\t\"preserve-management\": 1,\n\t\t\"preserve-accounts\": 1,\n\t\t\"reload\": 1\n\t}\n}"
 						},
 						"url": {
-							"raw": "https://{{HOST}}/axapi/v3/erase",
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/erase",
 							"protocol": "https",
 							"host": [
-								"{{HOST}}"
+								"{{HOST}}{{PORT}}"
 							],
 							"path": [
 								"axapi",
@@ -660,9 +1359,176 @@
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "TPS",
+			"item": [
+				{
+					"name": "Add a DDoS Zone",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"zone\": {\n                \"zone-name\": \"aXAPIZone\",\n                \"ip\": [\n                        {\n                                \"ip-addr\": \"192.168.7.7\"\n                        },\n                        {\n                                \"subnet-ip-addr\": \"9.9.0.0/16\"\n                        }\n                ],\n                \"operational-mode\": \"monitor\",\n                \"port\": {\n                        \"zone-service-list\": [\n                                {\n                                        \"port-num\": 80,\n                                        \"protocol\": \"http\"\n                                }\n                                ]\n                        }\n\t}\n\n}\n"
+						},
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/ddos/dst/zone",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"ddos",
+								"dst",
+								"zone"
+							]
+						}
+					},
+					"response": []
 				},
 				{
-					"name": "Get VRRP-A Settings",
+					"name": "Get DDoS Zone List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"type": "text",
+								"value": "app",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{authkey}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"zone\": {\n                \"zone-name\": \"aXAPIZone\",\n                \"ip\": [\n                        {\n                                \"ip-addr\": \"192.168.7.7\"\n                        },\n                        {\n                                \"subnet-ip-addr\": \"9.9.0.0/16\"\n                        }\n                ],\n                \"operational-mode\": \"monitor\",\n                \"port\": {\n                        \"zone-service-list\": [\n                                {\n                                        \"port-num\": 80,\n                                        \"protocol\": \"http\"\n                                }\n                                ]\n                        }\n\t}\n\n}\n"
+						},
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/ddos/dst/zone-list/",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"ddos",
+								"dst",
+								"zone-list",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete DDoS Zone",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/ddos/dst/zone/aXAPIZone",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"ddos",
+								"dst",
+								"zone",
+								"aXAPIZone"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "aXAPI Calls related to TPS DDoS Mitigation Solution.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7c8402d9-7484-430d-ab7e-95c0315b5112",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "8109f60f-de83-4386-abae-be757ab28751",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "SLB",
+			"item": [
+				{
+					"name": "SLB Server List",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -685,7 +1551,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{HOST}}/axapi/v3/vrrp-a/",
+							"raw": "https://{{HOST}}/axapi/v3/slb/server-list",
 							"protocol": "https",
 							"host": [
 								"{{HOST}}"
@@ -693,14 +1559,135 @@
 							"path": [
 								"axapi",
 								"v3",
-								"vrrp-a",
-								""
+								"slb",
+								"server-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get SLB Server Stats",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/slb/server/mqtt-broker/stats",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"slb",
+								"server",
+								"mqtt-broker",
+								"stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Service Group List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/slb/service-group-list",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"slb",
+								"service-group-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Virtual Server List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "app",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/slb/virtual-server-list",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"slb",
+								"virtual-server-list"
 							]
 						}
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "API calls releasted to SLB Virtual Servers.",
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Authorize - RUN ME FIRST!",
@@ -741,10 +1728,10 @@
 					"raw": "{\n\t\"credentials\": {\n\t\t\"username\": \"{{username}}\",\n\t\t\"password\": \"{{password}}\"\n\t}\n}"
 				},
 				"url": {
-					"raw": "https://{{HOST}}/axapi/v3/auth",
+					"raw": "https://{{HOST}}{{PORT}}/axapi/v3/auth",
 					"protocol": "https",
 					"host": [
-						"{{HOST}}"
+						"{{HOST}}{{PORT}}"
 					],
 					"path": [
 						"axapi",
@@ -770,7 +1757,7 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "text/plain",
+						"value": "application/json",
 						"type": "text"
 					},
 					{
@@ -781,60 +1768,18 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "show run"
+					"raw": "{\n\t\"running-config\": {\n\t\t\"aflex\": 0,\n\t\t\"class-list\": 0\n\t}\n}"
 				},
 				"url": {
-					"raw": "https://{{HOST}}/axapi/v3/clideploy",
+					"raw": "https://{{HOST}}{{PORT}}/axapi/v3/running-config",
 					"protocol": "https",
 					"host": [
-						"{{HOST}}"
+						"{{HOST}}{{PORT}}"
 					],
 					"path": [
 						"axapi",
 						"v3",
-						"clideploy"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "CLI Deploy",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content",
-						"value": "app",
-						"type": "text",
-						"disabled": true
-					},
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "text/plain",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "{{authkey}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "show int br"
-				},
-				"url": {
-					"raw": "https://{{HOST}}/axapi/v3/clideploy",
-					"protocol": "https",
-					"host": [
-						"{{HOST}}"
-					],
-					"path": [
-						"axapi",
-						"v3",
-						"clideploy"
+						"running-config"
 					]
 				}
 			},
@@ -864,10 +1809,10 @@
 					}
 				],
 				"url": {
-					"raw": "https://{{HOST}}/axapi/v3/admin",
+					"raw": "https://{{HOST}}{{PORT}}/axapi/v3/admin",
 					"protocol": "https",
 					"host": [
-						"{{HOST}}"
+						"{{HOST}}{{PORT}}"
 					],
 					"path": [
 						"axapi",
@@ -879,45 +1824,44 @@
 			"response": []
 		},
 		{
-			"name": "Get SSL Cert List",
+			"name": "Get Metrics (Prometheus)",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Content",
-						"value": "app",
 						"type": "text",
+						"value": "app",
 						"disabled": true
 					},
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
+						"type": "text",
 						"value": "application/json",
-						"type": "text"
+						"disabled": true
 					},
 					{
 						"key": "Authorization",
-						"value": "{{authkey}}",
-						"type": "text"
+						"type": "text",
+						"value": "{{authkey}}"
 					}
 				],
 				"url": {
-					"raw": "https://{{HOST}}/axapi/v3/admin",
+					"raw": "https://{{HOST}}{{PORT}}/metrics",
 					"protocol": "https",
 					"host": [
-						"{{HOST}}"
+						"{{HOST}}{{PORT}}"
 					],
 					"path": [
-						"axapi",
-						"v3",
-						"admin"
+						"metrics"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "SLB Server List",
+			"name": "Get VCS Info",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -940,23 +1884,23 @@
 					}
 				],
 				"url": {
-					"raw": "https://{{HOST}}/axapi/v3/slb/server-list",
+					"raw": "https://{{HOST}}{{PORT}}/axapi/v3/vcs",
 					"protocol": "https",
 					"host": [
-						"{{HOST}}"
+						"{{HOST}}{{PORT}}"
 					],
 					"path": [
 						"axapi",
 						"v3",
-						"slb",
-						"server-list"
+						"vcs"
 					]
-				}
+				},
+				"description": "Does not seem to work on:\n4.1.1 ADC"
 			},
 			"response": []
 		},
 		{
-			"name": "Get SLB Server Stats",
+			"name": "Get VRRP-A Settings",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -979,96 +1923,16 @@
 					}
 				],
 				"url": {
-					"raw": "https://{{HOST}}/axapi/v3/slb/server/test1/stats",
+					"raw": "https://{{HOST}}{{PORT}}/axapi/v3/vrrp-a/",
 					"protocol": "https",
 					"host": [
-						"{{HOST}}"
+						"{{HOST}}{{PORT}}"
 					],
 					"path": [
 						"axapi",
 						"v3",
-						"slb",
-						"server",
-						"test1",
-						"stats"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Service Group List",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content",
-						"value": "app",
-						"type": "text",
-						"disabled": true
-					},
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "{{authkey}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "https://{{HOST}}/axapi/v3/slb/service-group-list",
-					"protocol": "https",
-					"host": [
-						"{{HOST}}"
-					],
-					"path": [
-						"axapi",
-						"v3",
-						"slb",
-						"service-group-list"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Virtual Server List",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content",
-						"value": "app",
-						"type": "text",
-						"disabled": true
-					},
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "{{authkey}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "https://{{HOST}}/axapi/v3/slb/virtual-server-list",
-					"protocol": "https",
-					"host": [
-						"{{HOST}}"
-					],
-					"path": [
-						"axapi",
-						"v3",
-						"slb",
-						"virtual-server-list"
+						"vrrp-a",
+						""
 					]
 				}
 			},
@@ -1102,10 +1966,10 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://{{HOST}}/axapi/v3/write/memory",
+					"raw": "https://{{HOST}}{{PORT}}/axapi/v3/write/memory",
 					"protocol": "https",
 					"host": [
-						"{{HOST}}"
+						"{{HOST}}{{PORT}}"
 					],
 					"path": [
 						"axapi",
@@ -1141,10 +2005,10 @@
 					}
 				],
 				"url": {
-					"raw": "https://{{HOST}}/axapi/v3/logoff",
+					"raw": "https://{{HOST}}{{PORT}}/axapi/v3/logoff",
 					"protocol": "https",
 					"host": [
-						"{{HOST}}"
+						"{{HOST}}{{PORT}}"
 					],
 					"path": [
 						"axapi",
@@ -1180,22 +2044,24 @@
 	],
 	"variable": [
 		{
-			"id": "854a97e9-b326-49c5-b450-18402c555086",
+			"id": "363771ef-6a84-4a6f-9397-38e1f6aed4b7",
 			"key": "username",
-			"value": "admin",
-			"type": "string"
+			"value": "admin"
 		},
 		{
-			"id": "13ee0e43-e7cc-48ec-868d-b320d28d3f80",
+			"id": "d5edd06a-49f7-4bd8-9dcf-00d10bea97ca",
 			"key": "password",
-			"value": "a10",
-			"type": "string"
+			"value": "a10"
 		},
 		{
-			"id": "dfd9ee79-8488-4b22-aea8-df9fec701e55",
+			"id": "328c577e-cf5a-4f5d-9671-4f3f636c47f9",
 			"key": "HOST",
-			"value": "10.147.95.100",
-			"type": "string"
+			"value": "10.147.95.100"
+		},
+		{
+			"id": "471db3b9-6ea7-4710-8eb8-eaeb5d270e2c",
+			"key": "PORT",
+			"value": ":443"
 		}
 	]
 }

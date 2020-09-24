@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6607bf8a-8abc-4993-bf9e-e742e425d579",
+		"_postman_id": "4b3305f2-97a8-4e34-8829-56d86e09b28b",
 		"name": "aXAPI V3.0",
 		"description": "A10 Networks API Calls. \n\nVarious example calls of some of the APIs.  Be sure to set the HOST, username, & password variables in the Collection before making any calls.  You will need to run the Authroize request first in order to set the AuthKey for subsequent calls.\n\nJohn D. Allen\nSr. Solutions Engineer\nA10 Networks Inc.\nApril, 2019\n",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -512,7 +512,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "System",
@@ -1360,7 +1361,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "TPS",
@@ -1504,7 +1506,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "7c8402d9-7484-430d-ab7e-95c0315b5112",
+						"id": "533840e3-0308-4148-bd2f-26f54c55e930",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1514,7 +1516,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8109f60f-de83-4386-abae-be757ab28751",
+						"id": "360e61f5-abb8-4d87-9e7d-e32eee9ee5d9",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1551,10 +1553,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{HOST}}/axapi/v3/slb/server-list",
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/slb/server-list",
 							"protocol": "https",
 							"host": [
-								"{{HOST}}"
+								"{{HOST}}{{PORT}}"
 							],
 							"path": [
 								"axapi",
@@ -1695,7 +1697,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "305ddb5a-7c49-401f-9bf2-b81d45740337",
+						"id": "d3151bed-15e5-4c48-8c67-41c0ccae4d36",
 						"exec": [
 							"pm.test(\"Set Authkey\", function() {",
 							"    var jsonData = pm.response.json();",
@@ -2024,7 +2026,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "0d71c0ad-3506-4385-b872-0f909d36712b",
+				"id": "9cfc3e8f-9225-4a0f-a2a7-3fc30c6f5183",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -2034,7 +2036,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "4d378e0d-888a-4add-9f30-a7d797c5ed7c",
+				"id": "d71ca1ca-f9ab-4473-bbd8-63c5bf05530f",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -2063,5 +2065,6 @@
 			"key": "PORT",
 			"value": ":443"
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

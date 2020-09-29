@@ -844,6 +844,62 @@
 					"response": []
 				},
 				{
+					"name": "Sync to standby",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f46791ea-a9d8-46fc-9fd3-9aca0a2d05b8",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{authkey}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"sync\":{\r\n        \"address\":\"{{HOST_S}}\",\r\n        \"all-partitions\":\"true\",\r\n        \"auto-authentication\":\"true\",\r\n        \"type\":\"all\"\r\n  }\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/configure/sync",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"configure",
+								"sync"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get CPU Info",
 					"request": {
 						"method": "GET",
@@ -991,6 +1047,62 @@
 								"axapi",
 								"v3",
 								"partition"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change to ssli-in partition",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ec963375-c79c-4e4a-ab7d-d798b01922cc",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{authkey}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "https://{{HOST}}{{PORT}}/axapi/v3/active-partition/ssli_in",
+							"protocol": "https",
+							"host": [
+								"{{HOST}}{{PORT}}"
+							],
+							"path": [
+								"axapi",
+								"v3",
+								"active-partition",
+								"ssli_in"
 							]
 						}
 					},
